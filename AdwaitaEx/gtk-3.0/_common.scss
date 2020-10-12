@@ -15,7 +15,7 @@ $popover_radius: $button_radius + 4;
 $_sizevariant: 'compact'; //compact otherwise
 $_headerbar_height: if($_sizevariant=='default', 46px, 28px);
 $_entry_height: if($_sizevariant=='default', 32px, 24px);
-$_btn_pad: if($_sizevariant=='default', 4px 9px, 1px 4px);
+$_btn_pad: if($_sizevariant=='default', 4px 6px, 1px 4px);
 $_hb_btn_pad: if($_sizevariant=='default', 6px, 3px);
 $_img_btn_pad: if($_sizevariant=='default', 5px, 2px);
 $_sel_menu_pad: if($_sizevariant=='default', 6px 10px, 3px 10px);
@@ -168,7 +168,7 @@ flowbox {
   background-color: if($variant=='light', transparent, black);
   border-radius: 0;
   padding: 0;
-  
+
   &:backdrop { background-color: if($variant=='light', transparent, darken($backdrop_base_color,5%)); }
   &:active, &:selected { background-color: if($variant=='light', transparent, $selected_bg_color); }
   &:disabled { background-color: if($variant=='light', transparent, $insensitive_bg_color); }
@@ -573,7 +573,7 @@ $_dot_color: if($variant=='light', $selected_bg_color,
 button {
   @at-root %button_basic, & {
 
-    min-height: 24px;
+    min-height: 18px;
     min-width: 16px;
     padding: $_btn_pad;
     border: 1px solid;
@@ -689,10 +689,10 @@ button {
 
   // big standalone buttons like in Documents pager
   &.osd {
-    min-width: 26px;
-    min-height: 32px;
+    min-width: 20px;
+    min-height: 29px;
 
-    &.image-button { min-width: 34px; }
+    &.image-button { min-width: 20px; }
 
     color: $osd_fg_color;
     border-radius: 5px;
@@ -1619,10 +1619,10 @@ headerbar {
       background-color: $suggested_bg_color;
       background-image: none;
       box-shadow: inset 0 1px mix($top_hilight, $suggested_bg_color, 60%);
-      
-      label { 
+
+      label {
         text-shadow: none;
-        color: $selected_fg_color; 
+        color: $selected_fg_color;
       }
     }
 
@@ -1760,9 +1760,9 @@ headerbar {
       padding: 0;
     }
   }
-  
 
-  
+
+
   separator.titlebutton { opacity: 0; } /* hide the close button separator */
 
   .solid-csd & {
@@ -2103,7 +2103,7 @@ treeview.view {
   button.dnd,
   header.button.dnd { // for treeview-like derive widgets
     &:active, &:selected, &:hover, & {
-      padding: 0 6px;
+      padding: 0 1px;
       color: $base_color;
       background-image: none;
       background-color: $selected_bg_color;
@@ -2441,8 +2441,8 @@ notebook {
     @at-root %notebook_vert_arrows {
       margin-left: -5px;
       margin-right: -5px;
-      padding-left: 4px;
-      padding-right: 4px;
+      padding-left: 2px;
+      padding-right: 3px;
 
       &.down { -gtk-icon-source: -gtk-icontheme('pan-start-symbolic'); }
 
@@ -2464,8 +2464,8 @@ notebook {
     @at-root %notebook_horz_arrows {
       margin-top: -5px;
       margin-bottom: -5px;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: 1px;
+      padding-bottom: 1px;
 
       &.down { -gtk-icon-source: -gtk-icontheme('pan-up-symbolic'); }
 
@@ -2477,8 +2477,8 @@ notebook {
 
       @extend %button_basic_flat;
 
-      min-height: 16px;
-      min-width: 16px;
+      min-height: 6px;
+      min-width: 6px;
       border-radius: 0;
 
       &:hover:not(:active):not(:backdrop) {
@@ -2493,9 +2493,9 @@ notebook {
     }
 
     tab {
-      min-height: 30px;
-      min-width: 30px;
-      padding: 3px 12px;
+      min-height: 10px;
+      min-width: 10px;
+      padding: 1px 1px;
 
       outline-offset: -5px;
 
@@ -2550,11 +2550,11 @@ notebook {
         &, &:backdrop { color: gtkalpha(currentColor, 0.3); }
 
         padding: 0;
-        margin-top: 4px;
-        margin-bottom: 4px;
+        margin-top: 1px;
+        margin-bottom: 1px;
         // FIXME: generalize .small-button?
-        min-width: 20px;
-        min-height: 20px;
+        min-width: 4px;
+        min-height: 4px;
 
         &:last-child {
           margin-left: 4px;
@@ -2594,28 +2594,28 @@ notebook {
     &.left,
     &.right {
       tabs {
-        padding-top: 4px;
-        padding-bottom: 4px;
+        padding-top: 1px;
+        padding-bottom: 1px;
 
         &:not(:only-child) {
-          margin-top: 3px;
-          margin-bottom: 3px;
+          margin-top: 1px;
+          margin-bottom: 1px;
 
           &:first-child { margin-top: -1px; }
           &:last-child { margin-bottom: -1px; }
         }
 
         tab {
-          margin-top: 4px;
-          margin-bottom: 4px;
+          margin-top: 1px;
+          margin-bottom: 1px;
 
           &.reorderable-page { border-style: solid none; }
         }
       }
     }
 
-    &.top tab { padding-bottom: 4px; }
-    &.bottom tab { padding-top: 4px; }
+    &.top tab { padding-bottom: 1px; }
+    &.bottom tab { padding-top: 1px; }
   }
 
   > stack:not(:only-child) { // the :not(:only-child) is for "hidden" notebooks
@@ -2863,12 +2863,12 @@ switch {
 
     @if $variant == 'light' {
       @include button(normal-alt, $edge: $shadow_color);
-    } 
+    }
     @else {
       @include button(normal-alt, $c: lighten($bg_color,6%), $edge: $shadow_color);
     }
   }
-  
+
   image { color: transparent; } /* only show i / o for the accessible theme */
 
   &:hover slider {
@@ -3015,7 +3015,7 @@ radio {
   }
 
   &:backdrop { transition: $backdrop_transition; }
-  
+
   @if $variant == 'light' {
     // the borders of the light variant versions of checks and radios are too similar in luminosity to the selected background
     // color, hence we need special casing.
@@ -4089,7 +4089,7 @@ separator.sidebar {
 $_placesidebar_icons_opacity: 0.7;
 
 row image.sidebar-icon { opacity: $_placesidebar_icons_opacity; } // dim the sidebar icons
-                                                                  // see bug #786613 for details 
+                                                                  // see bug #786613 for details
                                                                   // on this oddity
 
 placessidebar {
@@ -4267,7 +4267,7 @@ infobar {
   border-style: none;
 
   &.action:hover > revealer > box {
-      background-color: if($variant == 'light', desaturate(lighten(invert($selected_bg_color), 47%), 30%), 
+      background-color: if($variant == 'light', desaturate(lighten(invert($selected_bg_color), 47%), 30%),
                         desaturate(darken(invert($selected_bg_color),42%), 70%));
       border-bottom: 1px solid lighten($borders_color, 5%);
   }
@@ -4278,7 +4278,7 @@ infobar {
   &.error {
     &:backdrop > revealer > box, & > revealer > box {
       label, & { color: $fg_color; }
-      background-color: if($variant == 'light', desaturate(lighten(invert($selected_bg_color), 45%), 30%), 
+      background-color: if($variant == 'light', desaturate(lighten(invert($selected_bg_color), 45%), 30%),
                         desaturate(darken(invert($selected_bg_color),40%), 70%));
       border-bottom: 1px solid lighten($borders_color, 5%);
     }
@@ -4762,7 +4762,7 @@ stackswitcher button.text-button.circular { // FIXME aggregate with buttons
  * Emoji *
  ********/
 
-popover.emoji-picker { 
+popover.emoji-picker {
   padding-left: 0;
   padding-right: 0;
 
@@ -4826,3 +4826,5 @@ popover.emoji-completion contents row box {
 popover.emoji-completion .emoji:hover {
   background: $popover_hover_color;
 }
+
+
